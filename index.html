@@ -4,15 +4,115 @@
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
+// print data types in window
+				var table = document.createElement("table");
+				var element = document.getElementById("BB");
+				element.appendChild(table);
+				function emailWrapper () {
+						for (var i = 0; i < geemails.length; i++) {
+							var row	= document.createElement("tr");
+							var coldate = document.createElement("td");
+							var coldatetext = document.createTextNode(geemails[i].date);
+							var colsender = document.createElement("td");
+							var colsendertext = document.createTextNode(geemails[i].sender);
+							var colsubject = document.createElement("td");
+							var colsubjecttext = document.createTextNode(geemails[i].subject);
+							var colbody = document.createElement("td");
+							var colbodytext = document.createTextNode(geemails[i].body);
+
+							row.className = "emailrow";
+							coldate.className = "date";
+							colsender.className = "sender";
+							colsubject.className = "subject";
+							colbody.className = "emailbody";
+
+							coldate.appendChild(coldatetext);
+							colsender.appendChild(colsendertext);
+							colsubject.appendChild(colsubjecttext);
+							colbody.appendChild(colbodytext);
+
+							table.appendChild(row);
+							row.appendChild(coldate);
+							row.appendChild(colsender);
+							row.appendChild(colsubject);
+							row.appendChild(colbody);
+
+
+					}
+				}
+
+				emailWrapper(geemails)
+			
+
+// toggle emailbody visibility
+				$('.emailrow').click(function(){
+					$(this).children('.emailbody').toggle();
+					});
+
+
+//total emails count
+				var emailcount = document.getElementsByTagName("tr");
+					document.getElementById("counter").innerHTML = 
+					"Inbox:" + emailcount.length;
+
+// look for new messages
+				setInterval(function(){
+					var newEmail = getNewMessage();
+					geemails.push(newEmail);
+
+					var row	= document.createElement("tr");
+							var coldate = document.createElement("td");
+							var coldatetext = document.createTextNode(newEmail.date);
+							var colsender = document.createElement("td");
+							var colsendertext = document.createTextNode(newEmail.sender);
+							var colsubject = document.createElement("td");
+							var colsubjecttext = document.createTextNode(newEmail.subject);
+							var colbody = document.createElement("td");
+							var colbodytext = document.createTextNode(newEmail.body);
+
+							row.className = "emailrow";
+							coldate.className = "date";
+							colsender.className = "sender";
+							colsubject.className = "subject";
+							colbody.className = "emailbody";
+
+							coldate.appendChild(coldatetext);
+							colsender.appendChild(colsendertext);
+							colsubject.appendChild(colsubjecttext);
+							colbody.appendChild(colbodytext);
+
+							table.appendChild(row);
+							row.appendChild(coldate);
+							row.appendChild(colsender);
+							row.appendChild(colsubject);
+							row.appendChild(colbody);
+
+
+					var emailcount = document.getElementsByTagName("tr");
+					document.getElementById("counter").innerHTML = 
+					"Inbox:" + emailcount.length;
+				}, 1000);
+			}
+
     </script>
 	</head>
 	<body>
-		<div class="container" id="main">
-			Build Me!
+		<div class="header" id="myHeader">
+			<div class="headerleft">
+					<h1 class="pageheader">TM Email Web App</h1>
+			</div>
+			<div class="headerright">
+					<p id="counter">0</p>
+			</div>
 		</div>
+
+		<div id="BB">
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+			crossorigin="anonymous"></script>
 	</body>
+					
 </html>
