@@ -41,14 +41,7 @@
 					}
 				}
 
-				emailWrapper(geemails)
-			
-
-// toggle emailbody visibility
-				$('.emailrow').click(function(){
-					$(this).children('.emailbody').toggle();
-					});
-
+				emailWrapper(geemails);
 
 //total emails count
 				var emailcount = document.getElementsByTagName("tr");
@@ -76,6 +69,8 @@
 							colsubject.className = "subject";
 							colbody.className = "emailbody";
 
+							
+
 							coldate.appendChild(coldatetext);
 							colsender.appendChild(colsendertext);
 							colsubject.appendChild(colsubjecttext);
@@ -91,7 +86,17 @@
 					var emailcount = document.getElementsByTagName("tr");
 					document.getElementById("counter").innerHTML = 
 					"Inbox:" + emailcount.length;
-				}, 1000);
+
+					$('.emailrow').click(function(){
+					$(this).children('.emailbody').toggle();
+					});
+				}, 3000);
+
+// toggle emailbody visibility
+
+				$('.emailrow').click(function(){
+					$(this).children('.emailbody').toggle();
+					});
 			}
 
     </script>
